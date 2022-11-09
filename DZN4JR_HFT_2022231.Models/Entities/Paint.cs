@@ -24,7 +24,7 @@ namespace DZN4JR_HFT_2022231.Models.Entities
 
         public int BrandId { get; set; }
 
-        [JsonIgnore]
+       
         public virtual Brand Brand { get; set; }
 
         public Paint()
