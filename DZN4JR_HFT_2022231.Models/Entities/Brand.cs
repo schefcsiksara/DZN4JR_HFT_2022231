@@ -32,10 +32,14 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         {
         }
 
-        public Brand(int id, string name)
+        public Brand(int id, string name, string wholeSalerName, string country, string address, int rating)
         {
             Id = id;
             Name = name;
+            WholeSalerName = wholeSalerName;
+            Country = country;
+            Address = address;
+            Rating = rating;
         }
 
         public override string ToString()
