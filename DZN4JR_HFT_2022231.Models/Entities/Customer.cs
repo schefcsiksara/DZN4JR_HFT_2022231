@@ -23,20 +23,22 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         public string Email { get; set; }
         public int PhoneNumber { get; set; }
         public bool RegularCustomer { get; set; }
-        public virtual Paint FavoritePaint { get; set; }
+        public int FavoritePaintId { get; set; }
 
+
+        public virtual Paint FavoritePaint { get; set; }
         public Customer()
         {
 
         }
-        public Customer(int customerId, string customerName, string adress, string email, bool regularCustomer, Paint favoritePaint)
+        public Customer(int customerId, string customerName, string adress, string email, bool regularCustomer, int favoritePaintId)
         {
             Id = customerId;
             CustomerName = customerName;
             Adress = adress;
             Email = email;
             RegularCustomer = regularCustomer;
-            FavoritePaint = favoritePaint;
+            FavoritePaintId = favoritePaintId;
         }
 
         public override string ToString()
