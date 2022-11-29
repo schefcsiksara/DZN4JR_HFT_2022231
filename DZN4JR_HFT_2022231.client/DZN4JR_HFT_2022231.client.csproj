@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DZN4JR_HFT_2022231.Models\DZN4JR_HFT_2022231.Models.csproj" />
   </ItemGroup>
 

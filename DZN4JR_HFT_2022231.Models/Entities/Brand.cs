@@ -19,8 +19,13 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
+        public string WholeSalerName { get; set; }
+        public string Country { get; set; }  
+        public string Address { get; set; }
+        public int Rating { get; set; }
 
-        
+
+
         public virtual IEnumerable<Paint> Paints { get; set; }
 
         public Brand()

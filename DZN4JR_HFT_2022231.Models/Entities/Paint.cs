@@ -21,11 +21,14 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         public string Type { get; set; }
 
         public int BasePrice { get; set; }
+        public string Volume { get; set; }
+        public string Color { get; set; }
 
         public int BrandId { get; set; }
 
        
         public virtual Brand Brand { get; set; }
+        public virtual IEnumerable<Customer> Customers { get; set; }
 
         public Paint()
         {

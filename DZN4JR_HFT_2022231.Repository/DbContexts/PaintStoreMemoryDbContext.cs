@@ -13,6 +13,7 @@ namespace DZN4JR_HFT_2022231.Repository.DbContexts
     {
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Paint> Paints { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
 
         public PaintStoreMemoryDbContext()
         {
@@ -26,7 +27,15 @@ namespace DZN4JR_HFT_2022231.Repository.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            DeleteBehavior noAction = DeleteBehavior.NoAction;
+
+            modelBuilder.Entity<Paint>(paint =>
+                paint.HasOne(x => x.Brand).WithMany(x => x.Paints).HasForeignKey(x => x.BrandId).OnDelete(noAction)
+            );
+
+            modelBuilder.Entity<Customer>(customer =>
+                customer.HasOne(x => x.FavoritePaint).WithMany(x => x.Customers).HasForeignKey(x => x.Id).OnDelete(noAction)
+            );
         }
     }
 }
