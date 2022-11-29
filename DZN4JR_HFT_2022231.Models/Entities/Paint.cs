@@ -34,21 +34,14 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         {
         }
 
-        public Paint(int id, string type, int basePrice, int brandId)
+        public Paint(int id, string type, int basePrice, string volume, string color, int brandId)
         {
             Id = id;
             Type = type;
             BasePrice = basePrice;
+            Volume = volume;
+            Color = color;
             BrandId = brandId;
-        }
-
-        public Paint(int id, string type, int basePrice, Brand brand)
-        {
-            Id = id;
-            Type = type;
-            BasePrice = basePrice;
-            BrandId = brand.Id;
-            Brand = brand;
         }
 
         public override string ToString()
