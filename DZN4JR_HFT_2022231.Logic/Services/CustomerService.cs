@@ -1,5 +1,6 @@
 ﻿using DZN4JR_HFT_2022231.Logic.Interfaces;
 using DZN4JR_HFT_2022231.Models.Entities;
+using DZN4JR_HFT_2022231.Models.Model;
 using DZN4JR_HFT_2022231.Repository.Interfaces;
 using DZN4JR_HFT_2022231.Repository.Repositories;
 using System;
@@ -12,33 +13,40 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 {
     public class CustomerService : ICustomerService
     {
-        private ICustomerRepository repository;
+        private IPaintRepository paintRepository;
+        private ICustomerRepository customerRepository;
+
+        public CustomerService(IPaintRepository paintRepository, ICustomerRepository customerRepository)
+        {
+            this.paintRepository = paintRepository;
+            this.customerRepository = customerRepository;
+        }
 
         public CustomerService(ICustomerRepository repository)
         {
-            this.repository = repository;
+            this.customerRepository = repository;
         }
 
         public Customer Create(Customer entity)
         {
-            return repository.Create(entity);
+            return customerRepository.Create(entity);
         }
 
         public void Delete(int id)
         {
             var entity = Read(id);
 
-            repository.Delete(entity);
+            customerRepository.Delete(entity);
         }
 
         public Customer Read(int id)
         {
-            return repository.Read(id);
+            return customerRepository.Read(id);
         }
 
         public List<Customer> ReadAll()
         {
-            return repository.ReadAll().ToList();
+            return customerRepository.ReadAll().ToList();
         }
 
         public Customer Update(Customer entity)
@@ -47,7 +55,22 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 
             oldEntity = entity;
 
-            return repository.Update(entity);
+            return customerRepository.Update(entity);
         }
+
+        public List<CustomerWithFavoritePaint> GetCustomerWithFavoritePaints()
+        {
+            var result = from customer in customerRepository.ReadAll()
+                         join paint in paintRepository.ReadAll()
+                            on customer.Id equals paint.Id
+                         select new CustomerWithFavoritePaint()
+                         {
+                             CustomerName = customer.CustomerName,
+                             FavoritePaint = paint.Color
+                         };
+
+            return result.ToList();
+        }
+
     }
 }
