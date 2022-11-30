@@ -25,7 +25,7 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         public int Rating { get; set; }
 
 
-
+        [JsonIgnore]
         public virtual IEnumerable<Paint> Paints { get; set; }
 
         public Brand()
