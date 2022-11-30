@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DZN4JR_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -51,9 +51,9 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
                     CustomerName = model.CustomerName,
                     Adress = model.Adress,
                     Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    RegularCustomer = model.RegularCustomer,
-                });
+                    RegularCustomer = true,
+                    FavoritePaintId = model.FavoritePaintId,
+                }) ;
             }
             catch (System.Exception ex)
             {
@@ -80,8 +80,8 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
                     CustomerName = model.CustomerName,
                     Adress = model.Adress,
                     Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    RegularCustomer = model.RegularCustomer,
+                    RegularCustomer = true,
+                    FavoritePaintId = model.FavoritePaintId,
                 };
 
                 oldCustomer = newCustomer;
@@ -115,6 +115,13 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
             }
 
             return result;
+        }
+
+        [HttpGet]
+        [ActionName("GetCustomerWithFavoritePaints")]
+        public List<CustomerWithFavoritePaint> GetCustomerWithFavoritePaints()
+        {
+            return service.GetCustomerWithFavoritePaints();
         }
     }
 }
