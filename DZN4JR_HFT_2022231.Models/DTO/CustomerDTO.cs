@@ -13,6 +13,6 @@ namespace DZN4JR_HFT_2022231.Models.DTO
         public string Email { get; set; }
         public int PhoneNumber { get; set; }
         public bool RegularCustomer { get; set; }
-        public int FavoritePaintColorId { get; set; }
+        public int FavoritePaintId { get; set; }
     }
 }
