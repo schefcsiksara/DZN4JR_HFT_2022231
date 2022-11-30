@@ -24,7 +24,9 @@ namespace DZN4JR_HFT_2022231.client
             menu
                 .Add("Get paint colors with brand name", () => GetPaintColorWithBrands(brandHttpService))
                 .Add("Get paint colors ordered by price", () => GetPaintColorWithBrandsOrderedByPrice(brandHttpService))
+                .Add("Get paint colors from Hungary", () => GetPaintColorWithBrandsFromHungary(brandHttpService))
                 .Add("Get paint colors where rate is over 3", () => GetPaintColorWithBrandsRateOver3(brandHttpService))
+                .Add("Get customer with favorite paint", () => GetCustomerWithFavoritePaints(customerHttpService))
 
                 .Add("Create Paint", () => AddPaint(paintHttpService))
                 .Add("Read Paint", () => GetPaint(paintHttpService))
@@ -67,6 +69,13 @@ namespace DZN4JR_HFT_2022231.client
                 Console.WriteLine(entity);
             }
         }
+        private static void ShowCustomerWithFavoritePaint(List<CustomerWithFavoritePaint> entities)
+        {
+            foreach (var entity in entities)
+            {
+                Console.WriteLine(entity);
+            }
+        }
 
         #endregion
 
@@ -96,6 +105,13 @@ namespace DZN4JR_HFT_2022231.client
         private static void GetPaintColorWithBrandsFromHungary(HttpService httpService)
         {
             ShowPaintWithBrandName(httpService.GetAll<PaintWithBrandName>("GetPaintColorWithBrandsFromHungary"));
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+        }
+
+        private static void GetCustomerWithFavoritePaints(HttpService httpService)
+        {
+            ShowCustomerWithFavoritePaint(httpService.GetAll<CustomerWithFavoritePaint>("GetCustomerWithFavoritePaints"));
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
@@ -221,18 +237,15 @@ namespace DZN4JR_HFT_2022231.client
             string Adress = Console.ReadLine();
             Console.WriteLine("Email");
             string Email = Console.ReadLine();
-            Console.WriteLine("PhoneNumber");
-            int PhoneNumber = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("RegularCustomer boolean");
-            bool RegularCustomer = Convert.ToBoolean(Console.ReadLine());
+            Console.WriteLine("FavoritePaintId");
+            int FavoritePaintId = int.Parse(Console.ReadLine());
 
             return new CustomerDTO()
             {
                 CustomerName = CustomerName,
                 Adress = Adress,
                 Email = Email,
-                PhoneNumber = PhoneNumber,
-                RegularCustomer = RegularCustomer,
+                FavoritePaintId = FavoritePaintId
             };
         }
 
@@ -285,14 +298,14 @@ namespace DZN4JR_HFT_2022231.client
         {
             Console.WriteLine("Name");
             string Name = Console.ReadLine();
-            Console.WriteLine("Name");
+            Console.WriteLine("WholeSalerName");
             string WholeSalerName = Console.ReadLine();
-            Console.WriteLine("Name");
+            Console.WriteLine("Country");
             string Country = Console.ReadLine();
-            Console.WriteLine("Name");
+            Console.WriteLine("Address");
             string Address = Console.ReadLine();
-            Console.WriteLine("Name");
-            int Rating = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Rating");
+            int Rating = int.Parse(Console.ReadLine());
 
             return new BrandDTO()
             {
