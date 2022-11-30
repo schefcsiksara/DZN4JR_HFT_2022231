@@ -15,11 +15,13 @@ namespace DZN4JR_HFT_2022231.Logic.Services
     {
         private IBrandRepository brandRepository;
         private IPaintRepository paintRepository;
+        private ICustomerRepository customerRepository;
 
-        public BrandService(IBrandRepository brandRepository, IPaintRepository paintRepository)
+        public BrandService(IBrandRepository brandRepository, IPaintRepository paintRepository, ICustomerRepository customerRepository)
         {
             this.brandRepository = brandRepository;
             this.paintRepository = paintRepository;
+            this.customerRepository = customerRepository;
         }
 
         public Brand Create(Brand entity)
@@ -67,6 +69,7 @@ namespace DZN4JR_HFT_2022231.Logic.Services
             return result.ToList();
         }
 
+      
         public List<PaintWithBrandNameAndPrice> GetPaintColorWithBrandsOrderedByPrice()
         {
             var result = from paint in paintRepository.ReadAll()
