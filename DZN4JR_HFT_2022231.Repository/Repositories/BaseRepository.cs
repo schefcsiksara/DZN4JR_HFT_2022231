@@ -19,7 +19,7 @@ namespace DZN4JR_HFT_2022231.Repository.Repositories
 
         public TEntity Create(TEntity entity)
         {
-            var result = Db.Set<TEntity>().Add(entity);
+            var result = Db.Add(entity);
             Db.SaveChanges();
 
             return result.Entity;
