@@ -1,4 +1,5 @@
 ﻿using DZN4JR_HFT_2022231.Models.Entities;
+using DZN4JR_HFT_2022231.Models.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace DZN4JR_HFT_2022231.Logic.Interfaces
         List<Customer> ReadAll();
         Customer Update(Customer entity);
         void Delete(int id);
+        List<CustomerWithFavoritePaint> GetCustomerWithFavoritePaints();
     }
 }
