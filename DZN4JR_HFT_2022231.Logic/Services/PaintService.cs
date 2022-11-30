@@ -48,5 +48,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 
             return repository.Update(entity);
         }
+      
     }
 }
