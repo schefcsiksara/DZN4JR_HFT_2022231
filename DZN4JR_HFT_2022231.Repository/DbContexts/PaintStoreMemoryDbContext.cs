@@ -35,7 +35,7 @@ namespace DZN4JR_HFT_2022231.Repository.DbContexts
                 paint.HasOne(x => x.Brand).WithMany(x => x.Paints).HasForeignKey(x => x.BrandId).OnDelete(noAction));
 
             modelBuilder.Entity<Customer>(customer =>
-                customer.HasOne(x => x.FavoritePaint).WithMany(x => x.Customers).HasForeignKey(x => x.Id).OnDelete(noAction) );
+                customer.HasOne(x => x.FavoritePaint).WithMany(x => x.Customers).HasForeignKey(x => x.FavoritePaintId).OnDelete(noAction) );
 
             var tricolor = new Brand(11111, "Tricolor", "Tricolor Kft.", "Hungary", "3531 Miskolc, Damjanich János u. 8/1", 5);
             var dulux = new Brand(22222, "Dulux", "Dulux Bt.", "Hungary", "4531 Nyírpazony, Béke u. 22/A.", 5);
