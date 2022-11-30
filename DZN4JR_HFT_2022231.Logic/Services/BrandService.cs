@@ -15,17 +15,25 @@ namespace DZN4JR_HFT_2022231.Logic.Services
     {
         private IBrandRepository brandRepository;
         private IPaintRepository paintRepository;
-        private ICustomerRepository customerRepository;
 
-        public BrandService(IBrandRepository brandRepository, IPaintRepository paintRepository, ICustomerRepository customerRepository)
+        public BrandService(IBrandRepository brandRepository, IPaintRepository paintRepository)
         {
             this.brandRepository = brandRepository;
             this.paintRepository = paintRepository;
-            this.customerRepository = customerRepository;
         }
 
         public Brand Create(Brand entity)
         {
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                throw new ApplicationException("Brand name cannot be empty");
+            }
+
+            if (entity.Name.Length > 30)
+            {
+                throw new ApplicationException("Brand name too long. Max characters: 30");
+            }
+
             return brandRepository.Create(entity);
         }
 
