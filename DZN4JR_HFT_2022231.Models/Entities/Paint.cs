@@ -19,9 +19,10 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         [Required]
         [MaxLength(50)]
         public string Color { get; set; }
-
+        [MaxLength(20)]
         public string Type { get; set; }
         public int BasePrice { get; set; }
+        [MaxLength(20)]
         public string Volume { get; set; }     
         public int BrandId { get; set; }
 
