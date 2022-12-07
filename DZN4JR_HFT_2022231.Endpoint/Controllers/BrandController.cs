@@ -144,5 +144,12 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
         {
             return service.GetPaintColorWithBrandsFromHungary();
         }
+
+        [HttpGet]
+        [ActionName("GetAllPaintsPrice")]
+        public List<BrandWithPaintPrice> GetAllPaintsPrice()
+        {
+            return service.GetAllPaintsPrice();
+        }
     }
 }

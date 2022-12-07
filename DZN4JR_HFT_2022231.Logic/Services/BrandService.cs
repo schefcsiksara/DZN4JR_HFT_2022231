@@ -41,6 +41,11 @@ namespace DZN4JR_HFT_2022231.Logic.Services
         {
             var entity = Read(id);
 
+            if (entity == null)
+            {
+                throw new ApplicationException("There is no brand with the given id");
+            }
+
             brandRepository.Delete(entity);
         }
 
@@ -56,6 +61,16 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 
         public Brand Update(Brand entity)
         {
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                throw new ApplicationException("Brand name cannot be empty");
+            }
+
+            if (entity.Name.Length > 30)
+            {
+                throw new ApplicationException("Brand name too long. Max characters: 30");
+            }
+
             var oldEntity = Read(entity.Id);
 
             oldEntity = entity;
@@ -83,7 +98,7 @@ namespace DZN4JR_HFT_2022231.Logic.Services
             var result = from paint in paintRepository.ReadAll()
                          join brand in brandRepository.ReadAll()
                             on paint.BrandId equals brand.Id
-                         orderby paint.BasePrice
+                         orderby paint.BasePrice ascending
                          select new PaintWithBrandNameAndPrice()
                          {
                              BrandName = brand.Name,
@@ -115,10 +130,26 @@ namespace DZN4JR_HFT_2022231.Logic.Services
                          join brand in brandRepository.ReadAll()
                             on paint.BrandId equals brand.Id
                          where brand.Country == "Hungary" || brand.Country == "hungary"
+                         orderby paint.Color ascending, paint.BasePrice descending
                          select new PaintWithBrandName()
                          {
                              BrandName = brand.Name,
                              PaintColor = paint.Color
+                         };
+
+            return result.ToList();
+        }
+
+        public List<BrandWithPaintPrice> GetAllPaintsPrice()
+        {
+            var result = from paint in paintRepository.ReadAll()
+                         join brand in brandRepository.ReadAll()
+                            on paint.BrandId equals brand.Id
+                         group paint.BasePrice by brand.Id into grouped
+                         select new BrandWithPaintPrice
+                         {
+                             BrandId = grouped.Key,
+                             PaintPrice = grouped.Sum()
                          };
 
             return result.ToList();

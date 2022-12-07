@@ -19,5 +19,6 @@ namespace DZN4JR_HFT_2022231.Logic.Interfaces
         public List<PaintWithBrandNameAndPrice> GetPaintColorWithBrandsOrderedByPrice();
         public List<PaintWithBrandName> GetPaintColorWithBrandsRateOver3();
         public List<PaintWithBrandName> GetPaintColorWithBrandsFromHungary();
+        public List<BrandWithPaintPrice> GetAllPaintsPrice();
     }
 }
