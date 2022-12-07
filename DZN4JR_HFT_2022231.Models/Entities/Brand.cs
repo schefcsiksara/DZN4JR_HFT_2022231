@@ -19,8 +19,11 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
+        [MaxLength(30)]
         public string WholeSalerName { get; set; }
-        public string Country { get; set; }  
+        [MaxLength(30)]
+        public string Country { get; set; }
+        [MaxLength(30)]
         public string Address { get; set; }
         public int Rating { get; set; }
 

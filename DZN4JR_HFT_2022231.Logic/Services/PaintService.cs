@@ -25,16 +25,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
                 throw new ApplicationException("Color cannot be empty");
             }
 
-            if (string.IsNullOrEmpty(entity.Type))
-            {
-                throw new ApplicationException("Address cannot be empty");
-            }
-
-            if (string.IsNullOrEmpty(entity.Volume))
-            {
-                throw new ApplicationException("Email cannot be empty");
-            }
-
             if (entity.Color.Length > 50)
             {
                 throw new ApplicationException("Color cannot be more than 50 characters");

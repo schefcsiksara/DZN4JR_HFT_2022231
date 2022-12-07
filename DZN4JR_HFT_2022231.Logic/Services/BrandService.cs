@@ -34,6 +34,21 @@ namespace DZN4JR_HFT_2022231.Logic.Services
                 throw new ApplicationException("Brand name too long. Max characters: 30");
             }
 
+            if (entity.WholeSalerName.Length > 30)
+            {
+                throw new ApplicationException("WholeSalerName too long. Max characters: 30");
+            }
+
+            if (entity.Country.Length > 30)
+            {
+                throw new ApplicationException("Country too long. Max characters: 30");
+            }
+
+            if (entity.Address.Length > 30)
+            {
+                throw new ApplicationException("Address too long. Max characters: 30");
+            }
+
             return brandRepository.Create(entity);
         }
 

@@ -34,16 +34,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
                 throw new ApplicationException("Name cannot be empty");
             }
 
-            if (string.IsNullOrEmpty(entity.Adress))
-            {
-                throw new ApplicationException("Address cannot be empty");
-            }
-
-            if (string.IsNullOrEmpty(entity.Email))
-            {
-                throw new ApplicationException("Email cannot be empty");
-            }
-
             if (entity.CustomerName.Length > 30)
             {
                 throw new ApplicationException("Name cannot be more than 30 characters");
