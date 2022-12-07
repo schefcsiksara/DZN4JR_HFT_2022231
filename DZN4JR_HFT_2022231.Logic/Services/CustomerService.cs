@@ -29,12 +29,48 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 
         public Customer Create(Customer entity)
         {
+            if (string.IsNullOrEmpty(entity.CustomerName))
+            {
+                throw new ApplicationException("Name cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(entity.Adress))
+            {
+                throw new ApplicationException("Address cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(entity.Email))
+            {
+                throw new ApplicationException("Email cannot be empty");
+            }
+
+            if (entity.CustomerName.Length > 30)
+            {
+                throw new ApplicationException("Name cannot be more than 30 characters");
+            }
+
+            if (entity.Adress.Length > 30)
+            {
+                throw new ApplicationException("Adress cannot be more than 30 characters");
+            }
+
+            if (entity.Email.Length > 30)
+            {
+                throw new ApplicationException("Email cannot be more than 30 characters");
+            }
+
+
             return customerRepository.Create(entity);
         }
 
         public void Delete(int id)
         {
             var entity = Read(id);
+
+            if (entity == null)
+            {
+                throw new ApplicationException("There is no brand with the given id");
+            }
 
             customerRepository.Delete(entity);
         }
@@ -51,6 +87,36 @@ namespace DZN4JR_HFT_2022231.Logic.Services
 
         public Customer Update(Customer entity)
         {
+            if (string.IsNullOrEmpty(entity.CustomerName))
+            {
+                throw new ApplicationException("Name cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(entity.Adress))
+            {
+                throw new ApplicationException("Address cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(entity.Email))
+            {
+                throw new ApplicationException("Email cannot be empty");
+            }
+
+            if (entity.CustomerName.Length > 30)
+            {
+                throw new ApplicationException("Name cannot be more than 30 characters");
+            }
+
+            if (entity.Adress.Length > 30)
+            {
+                throw new ApplicationException("Adress cannot be more than 30 characters");
+            }
+
+            if (entity.Email.Length > 30)
+            {
+                throw new ApplicationException("Email cannot be more than 30 characters");
+            }
+
             var oldEntity = Read(entity.Id);
 
             oldEntity = entity;

@@ -20,7 +20,9 @@ namespace DZN4JR_HFT_2022231.Models.Entities
         [Required]
         [MaxLength(30)]
         public string CustomerName { get; set; }
+        [MaxLength(30)]
         public string Adress { get; set; }
+        [MaxLength(30)]
         public string Email { get; set; }
         public bool RegularCustomer { get; set; }
         public int FavoritePaintId { get; set; }
