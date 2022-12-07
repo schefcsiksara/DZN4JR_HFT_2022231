@@ -27,6 +27,7 @@ namespace DZN4JR_HFT_2022231.client
                 .Add("Get paint colors from Hungary", () => GetPaintColorWithBrandsFromHungary(brandHttpService))
                 .Add("Get paint colors where rate is over 3", () => GetPaintColorWithBrandsRateOver3(brandHttpService))
                 .Add("Get customer with favorite paint", () => GetCustomerWithFavoritePaints(customerHttpService))
+                .Add("Get all paints prices", () => GetAllPaintsPrice(brandHttpService))
 
                 .Add("Create Paint", () => AddPaint(paintHttpService))
                 .Add("Read Paint", () => GetPaint(paintHttpService))
@@ -315,6 +316,21 @@ namespace DZN4JR_HFT_2022231.client
                 Address = Address,
                 Rating = Rating,
             };
+        }
+
+        private static void DisplayBrandWithPaintPrice(List<BrandWithPaintPrice> entities)
+        {
+            foreach (var entity in entities)
+            {
+                Console.WriteLine(entity);
+            }
+        }
+
+        private static void GetAllPaintsPrice(HttpService httpService)
+        {
+            DisplayBrandWithPaintPrice(httpService.GetAll<BrandWithPaintPrice>("GetAllPaintsPrice"));
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
         }
 
         #endregion
