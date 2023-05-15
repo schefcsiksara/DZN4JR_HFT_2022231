@@ -56,11 +56,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
         {
             var entity = Read(id);
 
-            if (entity == null)
-            {
-                throw new ApplicationException("There is no brand with the given id");
-            }
-
             brandRepository.Delete(entity);
         }
 
@@ -85,10 +80,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
             {
                 throw new ApplicationException("Brand name too long. Max characters: 30");
             }
-
-            var oldEntity = Read(entity.Id);
-
-            oldEntity = entity;
 
             return brandRepository.Update(entity);
         }

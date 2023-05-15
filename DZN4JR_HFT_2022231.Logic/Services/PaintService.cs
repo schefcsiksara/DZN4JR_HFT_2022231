@@ -47,11 +47,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
         {
             var entity = Read(id);
 
-            if (entity == null)
-            {
-                throw new ApplicationException("There is no brand with the given id");
-            }
-
             repository.Delete(entity);
         }
 
@@ -96,10 +91,6 @@ namespace DZN4JR_HFT_2022231.Logic.Services
             {
                 throw new ApplicationException("Volume cannot be more than 30 characters");
             }
-
-            var oldEntity = Read(entity.Id);
-
-            oldEntity = entity;
 
             return repository.Update(entity);
         }

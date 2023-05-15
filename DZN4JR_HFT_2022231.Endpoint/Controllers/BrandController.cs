@@ -3,44 +3,49 @@ using DZN4JR_HFT_2022231.Models.DTO;
 using DZN4JR_HFT_2022231.Models.Entities;
 using DZN4JR_HFT_2022231.Models.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
+using TRZJ1J_HFT_2022231.Endpoint.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace DZN4JR_HFT_2022231.Endpoint.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    //[Route("api/[controller]/[action]")]
+    [Route("[controller]")]
     [ApiController]
     public class BrandController : ControllerBase
     {
         private IBrandService service;
+        IHubContext<SignalRHub> hub;
 
-        public BrandController(IBrandService service)
+        public BrandController(IBrandService service, IHubContext<SignalRHub> hub)
         {
             this.service = service;
+            this.hub = hub;
         }
 
 
         // GET: api/Brand
         [HttpGet]
-        [ActionName("GetAll")]
-        public IEnumerable<Brand> Get()
+        //[ActionName("GetAll")]
+        public IEnumerable<Brand> ReadAll()
         {
             return service.ReadAll();
         }
 
         // GET api/Brand/5
         [HttpGet("{id}")]
-        [ActionName("Get")]
-        public Brand Get(int id)
+        //[ActionName("Get")]
+        public Brand Read(int id)
         {
             return service.Read(id);
         }
 
         // POST api/Brand
         [HttpPost]
-        [ActionName("Create")]
-        public APIResult Post([FromBody] BrandDTO model)
+        //[ActionName("Create")]
+        public APIResult Post([FromBody] Brand model)
         {
             var result = new APIResult(true);
 
@@ -54,6 +59,7 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
                     Address = model.Address,
                     Rating = model.Rating,
                 });
+                this.hub.Clients.All.SendAsync("BrandCreated", model);
             }
             catch (System.Exception ex)
             {
@@ -65,28 +71,17 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
         }
 
         // PUT api/Brand/5
-        [HttpPut("{id}")]
-        [ActionName("Update")]
-        public APIResult Put(int id, [FromBody] BrandDTO model)
+        [HttpPut()]
+        //[ActionName("Update")]
+        public APIResult Put([FromBody] Brand model)
         {
             var result = new APIResult(true);
 
             try
             {
-                var oldBrand = Get(id);
+                service.Update(model);
 
-                var newBrand = new Brand()
-                {
-                    Name = model.Name,
-                    WholeSalerName = model.WholeSalerName,
-                    Country = model.Country,
-                    Address = model.Address,
-                    Rating = model.Rating,
-                };
-
-                oldBrand = newBrand;
-
-                service.Update(oldBrand);
+                this.hub.Clients.All.SendAsync("BrandUpdated", model);
             }
             catch (System.Exception ex)
             {
@@ -99,14 +94,16 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
 
         // DELETE api/Brand/5
         [HttpDelete("{id}")]
-        [ActionName("Delete")]
+        //[ActionName("Delete")]
         public APIResult Delete(int id)
         {
             var result = new APIResult(true);
 
             try
             {
+                var delete = service.Read(id);
                 service.Delete(id);
+                this.hub.Clients.All.SendAsync("BrandDeleted", delete);
             }
             catch (System.Exception ex)
             {
@@ -117,7 +114,7 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
             return result;
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [ActionName("GetPaintColorWithBrands")]
         public List<PaintWithBrandName> GetPaintColorWithBrands()
         {
@@ -150,6 +147,6 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
         public List<BrandWithPaintPrice> GetAllPaintsPrice()
         {
             return service.GetAllPaintsPrice();
-        }
+        }*/
     }
 }
