@@ -4,6 +4,7 @@ using DZN4JR_HFT_2022231.Models.Entities;
 using DZN4JR_HFT_2022231.Models.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using System;
 using System.Collections.Generic;
 using TRZJ1J_HFT_2022231.Endpoint.Services;
 
@@ -57,7 +58,7 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
                     WholeSalerName = model.WholeSalerName,
                     Country = model.Country,
                     Address = model.Address,
-                    Rating = model.Rating,
+                    Rating = Convert.ToInt32(model.Rating),
                 });
                 this.hub.Clients.All.SendAsync("BrandCreated", model);
             }
