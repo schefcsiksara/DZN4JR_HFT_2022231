@@ -113,12 +113,11 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
 
             return result;
         }
-        /*
-        [HttpGet]
-        [ActionName("GetCustomerWithFavoritePaints")]
+        
+        [HttpGet("getcustomerwithfavoritepaints")]
         public List<CustomerWithFavoritePaint> GetCustomerWithFavoritePaints()
         {
             return service.GetCustomerWithFavoritePaints();
-        }*/
+        }
     }
 }

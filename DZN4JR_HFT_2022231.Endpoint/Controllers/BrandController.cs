@@ -115,39 +115,34 @@ namespace DZN4JR_HFT_2022231.Endpoint.Controllers
             return result;
         }
 
-        /*[HttpGet]
-        [ActionName("GetPaintColorWithBrands")]
+        [HttpGet("getpaintcolorwithbrands")]
         public List<PaintWithBrandName> GetPaintColorWithBrands()
         {
             return service.GetPaintColorWithBrands();
         }
 
-        [HttpGet]
-        [ActionName("GetPaintColorWithBrandsOrderedByPrice")]
+        [HttpGet("getpaintcolorwithbrandorderedbyprice")]
         public List<PaintWithBrandNameAndPrice> GetPaintColorWithBrandsOrderedByPrice()
         {
             return service.GetPaintColorWithBrandsOrderedByPrice();
         }
 
-        [HttpGet]
-        [ActionName("GetPaintColorWithBrandsRateOver3")]
+        [HttpGet("getpaintcolorwithbrandsrateover3")]
         public List<PaintWithBrandName> GetPaintColorWithBrandsRateOver3()
         {
             return service.GetPaintColorWithBrandsRateOver3();
         }
 
-        [HttpGet]
-        [ActionName("GetPaintColorWithBrandsFromHungary")]
+        [HttpGet("getpaintcolorwithbrandsfromhungary")]
         public List<PaintWithBrandName> GetPaintColorWithBrandsFromHungary()
         {
             return service.GetPaintColorWithBrandsFromHungary();
         }
 
-        [HttpGet]
-        [ActionName("GetAllPaintsPrice")]
+        [HttpGet("getallpaintsprice")]
         public List<BrandWithPaintPrice> GetAllPaintsPrice()
         {
             return service.GetAllPaintsPrice();
-        }*/
+        }
     }
 }

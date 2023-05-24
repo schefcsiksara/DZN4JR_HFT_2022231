@@ -23,6 +23,7 @@ namespace DZN4JR_HFT_2022231.WPFClient
         public MainWindow()
         {
             InitializeComponent();
+            new NonCrudWindow().Show();
         }
     }
 }

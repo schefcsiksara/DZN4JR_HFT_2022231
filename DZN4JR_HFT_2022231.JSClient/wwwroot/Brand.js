@@ -42,6 +42,79 @@ async function getdata() {
             data = y;
             display();
         });
+
+    await fetch('http://localhost:49044/brand/getpaintcolorwithbrands')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('paintColorWithBrands').innerHTML +=
+                    "<tr><td>" + t.brandName + "</td>"
+                    + "<td>" + t.paintColor + "</td>"
+                    + "</td></tr>";
+            });
+        });
+
+    await fetch('http://localhost:49044/brand/getpaintcolorwithbrandorderedbyprice')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('paintColorWithBrandsOrderedByPrice').innerHTML +=
+                    "<tr><td>" + t.brandName + "</td>"
+                    +"<td>" + t.paintColor + "</td>"
+                    + "<td>" + t.paintPrice + "</td>"
+                    + "</td></tr>";
+            });
+        });
+
+    await fetch('http://localhost:49044/brand/getpaintcolorwithbrandsrateover3')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('paintColorWithBrandsRateOver3').innerHTML +=
+                    "<tr><td>" + t.brandName + "</td>"
+                    + "<td>" + t.paintColor + "</td>"
+                    + "</td></tr>";
+            });
+        });
+
+    await fetch('http://localhost:49044/brand/getpaintcolorwithbrandsfromhungary')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('paintColorWithBrandsFromHungary').innerHTML +=
+                    "<tr><td>" + t.brandName + "</td>"
+                    + "<td>" + t.paintColor + "</td>"
+                    + "</td></tr>";
+            });
+        });
+
+    await fetch('http://localhost:49044/brand/getallpaintsprice')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('allPaintsPrice').innerHTML +=
+                    "<tr><td>" + t.brandId + "</td>"
+                    + "<td>" + t.paintPrice + "</td>"
+                    + "</td></tr>";
+            });
+        });
+
+    await fetch('http://localhost:49044/customer/getcustomerwithfavoritepaints')
+        .then(x => x.json())
+        .then(y => {
+            y.forEach(t => {
+                console.log(t);
+                document.getElementById('customerWithFavoritePaints').innerHTML +=
+                    "<tr><td>" + t.customerName + "</td>"
+                    + "<td>" + t.favoritePaint + "</td>"
+                    + "</td></tr>";
+            });
+        });
 }
 
 function display() {
